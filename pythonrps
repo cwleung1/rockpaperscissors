@@ -1,0 +1,66 @@
+import random
+
+player = ""
+com = ""
+tie = ""
+playerscore = 0
+com_score = 0
+tie_score = 0
+gamelimit = 0
+possible_hand = ["rock", "paper", "scissors"]
+
+def gameplay(player_hand, com_hand):
+    if player_hand == "rock" and com_hand == "scissors":
+        print("You won, next round?")
+        return "player"
+    elif player_hand == "rock" and com_hand == "paper":
+        print("You lose :(((")
+        return "com"
+    elif player_hand == "scissors" and com_hand == "paper":
+        print("You won, next round?")
+        return "player"
+    elif player_hand == "scissors" and com_hand == "rock":
+        print("You lose :(((")
+        return "com"
+    elif player_hand == "paper" and com_hand == "rock":
+        print("You won, next round")
+        return "player"
+    elif player_hand == "paper" and com_hand == "scissors":
+        print("You lose :(((")
+        return "com"
+    else:
+        print("Tie......")
+        return "tie"
+
+
+name = input("What's your name: ")
+print(name + "... Let's play....")
+
+while gamelimit != 3:
+    com_hand = random.choice(possible_hand)
+
+    while True:
+        playerhand = input("Rock... Paper... Scissors.... : ")
+        if playerhand == "rock" or playerhand == "paper" or playerhand == "scissors":
+            break
+        else:
+            print("Invalid Entry")
+    print(name, "'s hand: " + playerhand)
+    print("Com hand:" + com_hand)
+    result = gameplay(playerhand, com_hand)
+    if result == "player":
+        playerscore += 1
+        gamelimit += 1
+    if result == "com":
+        com_score += 1
+        gamelimit += 1
+    if result == "tie":
+        tie_score += 1
+        gamelimit += 1
+    print("\nplayer score: " + str(playerscore), "Computer score: " + str(com_score), "tie score: " + str(tie_score))
+
+
+if tie_score ==3:
+    print("ALL tie... are you thai?")
+
+print("\nBike...\n      Sayonara!!")
